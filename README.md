@@ -2,6 +2,8 @@
 
 A UIActivity subclass that provides an "Open In Safari" action.
 
+![](https://raw.githubusercontent.com/ishkawa/SafariActivity/master/screenshot.png)
+
 ## Requirements
 
 - iOS 8.0 or later
