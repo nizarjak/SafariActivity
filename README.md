@@ -1,11 +1,10 @@
 # SafariActivity
 
-[![Circle CI](https://img.shields.io/circleci/project/ishkawa/SafariActivity.svg?style=flat)](https://circleci.com/gh/ishkawa/SafariActivity)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 A UIActivity subclass that provides an "Open In Safari" action.
 
-![](https://raw.githubusercontent.com/ishkawa/SafariActivity/master/screenshot.png)
+![](https://github.com/nizarjak/SafariActivity/raw/master/screenshot.png)
 
 ## Requirements
 
@@ -16,7 +15,7 @@ A UIActivity subclass that provides an "Open In Safari" action.
 You have 2 choices.
 
 - Embed `SafariActivity.framework` to your project.
-- add `github "ishkawa/SafariActivity"` to your [Cartfile](https://github.com/Carthage/Carthage).
+- add `github "nizarjak/SafariActivity"` to your [Cartfile](https://github.com/Carthage/Carthage).
 
 
 ## Usage
