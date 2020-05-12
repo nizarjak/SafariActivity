@@ -1,50 +1,47 @@
 import UIKit
 
 public class SafariActivity: UIActivity {
-    public var URL: URL?
+    public var url: URL?
 
-    public override var activityType: UIActivityType? {
-        return UIActivityType(rawValue: "SafariActivity")
+    public override var activityType: UIActivity.ActivityType? {
+        return UIActivity.ActivityType(rawValue: "SafariActivity")
     }
 
     public override var activityTitle: String? {
         // load value from main bundle to enable overwriting title
         let frameworkBundle = Bundle(for: type(of: self))
         let mainBundle = Bundle.main
-        let defaultString = frameworkBundle.localizedString(forKey: "Open in Safari", value: "Open in Safari", table: nil)
-        return mainBundle.localizedString(forKey: "Open in Safari", value: defaultString, table: nil)
+        let defaultString = frameworkBundle.localizedString(forKey: "open-in-safari", value: "open-in-safari", table: nil)
+        return mainBundle.localizedString(forKey: "open-in-safari", value: defaultString, table: nil)
     }
 
     public override var activityImage: UIImage? {
         let frameworkBundle = Bundle(for: type(of: self))
-        var image: UIImage? 
+        var image: UIImage?
 
         if let path = frameworkBundle.path(forResource: "safari", ofType: "png") {
             image = UIImage(contentsOfFile: path)
         }
-        
+
         return image
     }
 
     public override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
-        var canPerform = false
-        
         for activityItem in activityItems {
-            if let URL = activityItem as? URL {
-                if UIApplication.shared.canOpenURL(URL) {
-                    canPerform = true
-                    break
+            if let url = activityItem as? URL {
+                if UIApplication.shared.canOpenURL(url) {
+                    return true
                 }
             }
         }
-        
-        return canPerform
+
+        return false
     }
 
     public override func prepare(withActivityItems activityItems: [Any]) {
         for activityItem in activityItems {
-            if let URL = activityItem as? URL {
-                self.URL = URL
+            if let url = activityItem as? URL {
+                self.url = url
                 break
             }
         }
@@ -53,8 +50,8 @@ public class SafariActivity: UIActivity {
     public override func perform() {
         var completed = false
         
-        if let URL = URL {
-            completed = UIApplication.shared.openURL(URL)
+        if let url = url {
+            completed = UIApplication.shared.openURL(url)
         }
         
         activityDidFinish(completed)

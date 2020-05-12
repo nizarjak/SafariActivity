@@ -2,26 +2,19 @@ import UIKit
 import SafariActivity
 
 class ViewController: UIViewController, UIWebViewDelegate {
-    @IBOutlet weak var webView: UIWebView!
-    @IBOutlet weak var actionBarButtonItem: UIBarButtonItem!
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let URL = NSURL(string: "https://google.com")!
-        let request = NSURLRequest(URL: URL)
-        webView.loadRequest(request)
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = UIColor.white
+        navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .action, target: self, action: #selector(sharePressed))
     }
-    
-    @IBAction func showActivityViewController() {
-        if let URL = webView.request?.URL {
+
+    @objc private func sharePressed() {
+        if let url = URL(string: "https://www.google.com") {
             let activity = SafariActivity()
-            let viewController = UIActivityViewController(activityItems: [URL], applicationActivities: [activity])
-            presentViewController(viewController, animated: true, completion: nil)
+            let viewController = UIActivityViewController(activityItems: [url], applicationActivities: [activity])
+            present(viewController, animated: true, completion: nil)
         }
-    }
-    
-    func webViewDidFinishLoad(webView: UIWebView) {
-        actionBarButtonItem.enabled = true
     }
 }
